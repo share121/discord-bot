@@ -22,10 +22,10 @@ export function createAi({
   let messages: ChatCompletionMessageParam[] = [];
   const mutex = new Mutex();
   async function* ai(prompt: string) {
-    const msg = prompt + constraints;
-    messages.push({ role: "user", content: msg });
     let len = messages.length - historyLength;
     if (len > 0) messages = messages.slice(len);
+    const msg = prompt + constraints;
+    messages.push({ role: "user", content: msg });
     const stream = await aiClient.chat.completions.create({
       messages: [...globalMsg, ...messages],
       model,
