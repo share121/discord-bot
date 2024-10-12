@@ -1,0 +1,23 @@
+{
+  "name": "cat-girl",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/index.js",
+    "deploy-commands": "tsc && node dist/deploy-commands.js"
+  },
+  "keywords": [],
+  "author": "share121",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "async-mutex": "^0.5.0",
+    "discord.js": "^14.16.3",
+    "openai": "^4.67.1"
+  }
+}
