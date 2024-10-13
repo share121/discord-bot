@@ -1,5 +1,6 @@
 {
   "token": "你的 bot token",
   "clientId": "你的 bot clientId",
-  "model": "qwen2.5:7b"
+  "model": "qwen2.5:7b",
+  "contextSize": 50
 }

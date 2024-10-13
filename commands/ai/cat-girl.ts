@@ -1,6 +1,6 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from "discord.js";
 import { createAi } from "../../ai";
-import { model } from "../../config.json";
+import { model, contextSize } from "../../config.json";
 
 export const data = new SlashCommandBuilder()
   .setName("cat-girl")
@@ -11,7 +11,7 @@ export const data = new SlashCommandBuilder()
       .setDescription("输入你想与「猫娘」聊天的内容")
       .setRequired(true)
   );
-const ai = createAi();
+const ai = createAi({ contextSize });
 
 export async function execute(interaction: ChatInputCommandInteraction) {
   const input = interaction.options.getString("输入内容");
