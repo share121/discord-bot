@@ -5,7 +5,7 @@ export async function execute(interaction: Interaction) {
   if (!interaction.isChatInputCommand()) return;
   const command = interaction.client.commands.get(interaction.commandName);
   if (!command) {
-    console.error(`No command matching ${interaction.commandName} was found.`);
+    console.error(`没有找到 ${interaction.commandName} 命令`);
     return;
   }
   try {
@@ -14,12 +14,12 @@ export async function execute(interaction: Interaction) {
     console.error(error);
     if (interaction.replied || interaction.deferred) {
       await interaction.followUp({
-        content: "There was an error while executing this command!",
+        content: `执行此命令时出错！\n\n${error}`,
         ephemeral: true,
       });
     } else {
       await interaction.reply({
-        content: "There was an error while executing this command!",
+        content: `执行此命令时出错！\n\n${error}`,
         ephemeral: true,
       });
     }
