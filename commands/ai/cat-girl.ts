@@ -37,10 +37,13 @@ export async function execute(interaction: ChatInputCommandInteraction) {
     process.stdout.write(chunk);
     if (state === State.finished) {
       state = State.waiting;
-      interaction.editReply(content).finally(() => (state = State.finished));
+      interaction
+        .editReply(content)
+        .catch(() => {})
+        .finally(() => (state = State.finished));
     }
   }
-  interaction.editReply(content);
+  interaction.editReply(content).catch(() => {});
   process.stdout.write("\n\n");
 }
 
