@@ -30,7 +30,7 @@ export async function execute(arg: { [key: string]: any }) {
     .toArray()
     .map((e) => $(e).text().replace(/^网页/, ""));
   const res: { title: string; desc: string }[] = [];
-  const len = Math.min(title.length, desc.length);
+  const len = Math.min(Math.min(title.length, desc.length), 3);
   for (let i = 0; i < len; i++) {
     res.push({
       title: title[i],

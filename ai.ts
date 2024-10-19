@@ -108,11 +108,16 @@ export function createAi({ contextSize }: { contextSize: number }) {
       stream: true,
     });
     let content = "";
+    let temp = "";
     for await (const chunk of finalResponse) {
       const t = chunk.message.content;
       if (t) {
-        content += t;
-        yield t;
+        temp += t;
+        if (t.trim()) {
+          content += temp;
+          yield temp;
+          temp = "";
+        }
       }
     }
     messages.push({ role: "assistant", content });
