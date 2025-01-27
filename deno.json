@@ -1,0 +1,11 @@
+{
+  "imports": {
+    "@discordeno/types": "npm:@discordeno/types@^21.0.0",
+    "@openai/openai": "jsr:@openai/openai@^4.80.1",
+    "async-mutex": "npm:async-mutex@^0.5.0",
+    "discordeno": "npm:discordeno@^21.0.0"
+  },
+  "compilerOptions": {
+    "types": ["@discordeno/types"]
+  }
+}
