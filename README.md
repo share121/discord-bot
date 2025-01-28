@@ -43,5 +43,5 @@ git clone https://gh.llkk.cc/https://github.com/share121/discord-bot.git
 ## 步骤四：运行
 
 ```shell
-deno run -A ./src/register-commands.ts
+deno run -A ./main.ts
 ```
