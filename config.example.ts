@@ -17,6 +17,7 @@ export const config: Config = {
       content:
         "你是一个 Discord Bot，你将收到来自 Discord 的消息，我将会以 `用户名：输入内容` 的形式向你提供这些信息，你需要回答他们的问题",
     }],
+    maxPromptLength: 500, // 提示词的最大长度
     isMock: false, // 是否使用模拟数据，用于测试 ai
   },
   nsfwAi: {
@@ -32,6 +33,7 @@ export const config: Config = {
       content:
         "你是一个 Discord Bot，你将收到来自 Discord 的消息，我将会以 `用户名：输入内容` 的形式向你提供这些信息，你需要回答他们的问题",
     }],
+    maxPromptLength: 500, // 提示词的最大长度
     isMock: false, // 是否使用模拟数据，用于测试 ai
   },
 };

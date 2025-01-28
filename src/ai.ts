@@ -8,6 +8,7 @@ export class AI {
   maxContextSize;
   fitContextSize;
   isMock;
+  maxPromptLength;
   history = [] as OpenAI.Chat.Completions.ChatCompletionMessageParam[];
   mutex = new Mutex();
 
@@ -21,6 +22,7 @@ export class AI {
     this.maxContextSize = config.maxContextSize;
     this.fitContextSize = config.fitContextSize;
     this.isMock = config.isMock;
+    this.maxPromptLength = config.maxPromptLength;
   }
 
   resetup(config: AIConfig) {
@@ -33,11 +35,16 @@ export class AI {
     this.maxContextSize = config.maxContextSize;
     this.fitContextSize = config.fitContextSize;
     this.isMock = config.isMock;
+    this.maxPromptLength = config.maxPromptLength;
   }
 
   async *generate(prompt: string) {
     const release = await this.mutex.acquire();
     try {
+      if (prompt.length > this.maxPromptLength) {
+        yield `提示词太长了，请缩短到 ${this.maxPromptLength} 个字符以内`;
+        return;
+      }
       if (this.needClearHistory()) {
         this.history = this.history.slice(-2 * this.fitContextSize);
       }
@@ -104,6 +111,7 @@ export interface AIConfig {
   fitContextSize: number;
   systemPrompt: OpenAI.Chat.Completions.ChatCompletionMessageParam[];
   isMock: boolean;
+  maxPromptLength: 500;
 }
 
 async function* mockAI(): AsyncIterable<string> {
