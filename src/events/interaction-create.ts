@@ -19,9 +19,15 @@ export const event: typeof bot.events.interactionCreate = async (
     }
 
     try {
+      const args = commandOptionsParser(interaction);
+      console.log(
+        `Executing command "${interaction.data.name}", args: ${
+          JSON.stringify(args)
+        }`,
+      );
       await command.execute(
         interaction as Interaction,
-        commandOptionsParser(interaction),
+        args,
       );
     } catch (error) {
       console.error(

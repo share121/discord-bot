@@ -12,8 +12,8 @@ enum State {
 }
 
 export const command: Command = {
-  name: "ai",
-  description: "与 DeepSeek-V3 对话",
+  name: "ai-private",
+  description: "与 DeepSeek-V3 对话，但你的对话只有你能看到",
   options: [
     {
       name: "prompt",
@@ -23,12 +23,12 @@ export const command: Command = {
     },
   ],
   async execute(interaction, args: { prompt: string }) {
-    let ai = aiMap.get(interaction.channelId!);
+    let ai = aiMap.get(interaction.user.id);
     if (!ai) {
-      ai = new AI(interaction.channel.nsfw ? config.nsfwAi : config.ai);
-      aiMap.set(interaction.channelId!, ai);
+      ai = new AI(config.ai);
+      aiMap.set(interaction.user.id, ai);
     }
-    await interaction.defer();
+    await interaction.defer(true);
     const prompt = `${interaction.user.username}：${args.prompt}`;
     const stream = ai.generate(prompt);
     console.log(prompt);

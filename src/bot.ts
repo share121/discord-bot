@@ -12,9 +12,11 @@ export const bot = createBot({
       token: true,
       channelId: true,
       user: true,
+      channel: true,
     },
     user: {
       username: true,
+      id: true,
     },
   },
 });
