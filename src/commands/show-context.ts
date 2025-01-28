@@ -13,7 +13,7 @@ export const command: Command = {
       description: "你需要展示哪个 ai 的上下文",
       type: ApplicationCommandOptionTypes.Integer,
       choices: [
-        { name: "公共", value: AiType.common },
+        { name: "当前频道", value: AiType.common },
         { name: "私人", value: AiType.private },
       ],
       required: true,
@@ -38,10 +38,15 @@ ${JSON.stringify(ai.showContext(), null, 2).replaceAll("`", "\\`")}
         });
         return;
       }
-      await interaction.respond(`上下文为：
+      await interaction.respond(
+        `上下文为：
 \`\`\`json
 ${JSON.stringify(ai.showContext(), null, 2).replaceAll("`", "\\`")}
-\`\`\``);
+\`\`\``,
+        {
+          isPrivate: true,
+        },
+      );
     }
   },
 };

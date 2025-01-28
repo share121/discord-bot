@@ -1,9 +1,10 @@
-import { createBot } from "discordeno";
+import { createBot, GatewayIntents } from "discordeno";
 import { config } from "../config.ts";
 import events from "./events/index.ts";
 
 export const bot = createBot({
   token: config.token,
+  intents: GatewayIntents.GuildMessages | GatewayIntents.MessageContent,
   desiredProperties: {
     interaction: {
       id: true,
@@ -17,6 +18,13 @@ export const bot = createBot({
     user: {
       username: true,
       id: true,
+    },
+    message: {
+      content: true,
+      author: true,
+      id: true,
+      channelId: true,
+      guildId: true,
     },
   },
 });

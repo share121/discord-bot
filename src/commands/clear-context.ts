@@ -17,7 +17,7 @@ export const command: Command = {
       description: "你需要清理哪个 ai 的上下文",
       type: ApplicationCommandOptionTypes.Integer,
       choices: [
-        { name: "公共", value: AiType.common },
+        { name: "当前频道", value: AiType.common },
         { name: "私人", value: AiType.private },
       ],
       required: true,
@@ -27,7 +27,7 @@ export const command: Command = {
     if (args.scope === AiType.common) {
       const ai = commonAiMap.get(interaction.channelId!);
       if (!ai) {
-        await interaction.respond("这个频道还没有与 AI 对话过");
+        await interaction.respond("当前频道还没有与 AI 对话过");
         return;
       }
       commonAiMap.delete(interaction.channelId!);

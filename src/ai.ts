@@ -23,6 +23,18 @@ export class AI {
     this.isMock = config.isMock;
   }
 
+  resetup(config: AIConfig) {
+    this.client = new OpenAI({
+      baseURL: config.baseURL,
+      apiKey: config.apiKey,
+    });
+    this.model = config.model;
+    this.systemPrompt = config.systemPrompt;
+    this.maxContextSize = config.maxContextSize;
+    this.fitContextSize = config.fitContextSize;
+    this.isMock = config.isMock;
+  }
+
   async *generate(prompt: string) {
     const release = await this.mutex.acquire();
     try {

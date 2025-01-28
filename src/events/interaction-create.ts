@@ -14,16 +14,14 @@ export const event: typeof bot.events.interactionCreate = async (
 
     const command = commands.get(interaction.data.name);
     if (!command) {
-      console.warn(`Command "${interaction.data.name}" not found`);
+      console.warn(`找不到 "${interaction.data.name}" 指令`);
       return;
     }
 
     try {
       const args = commandOptionsParser(interaction);
       console.log(
-        `Executing command "${interaction.data.name}", args: ${
-          JSON.stringify(args)
-        }`,
+        `执行指令 "${interaction.data.name}", 参数: ${JSON.stringify(args)}`,
       );
       await command.execute(
         interaction as Interaction,
@@ -31,7 +29,7 @@ export const event: typeof bot.events.interactionCreate = async (
       );
     } catch (error) {
       console.error(
-        `Error executing command "${interaction.data.name}"`,
+        `执行指令 "${interaction.data.name}" 失败`,
         error,
       );
     }

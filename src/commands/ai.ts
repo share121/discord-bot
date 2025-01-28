@@ -6,7 +6,7 @@ import process from "node:process";
 
 export const aiMap = new Map<bigint, AI>();
 
-enum State {
+export enum State {
   finished,
   pending,
 }
