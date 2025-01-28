@@ -111,7 +111,7 @@ export interface AIConfig {
   fitContextSize: number;
   systemPrompt: OpenAI.Chat.Completions.ChatCompletionMessageParam[];
   isMock: boolean;
-  maxPromptLength: 500;
+  maxPromptLength: number;
 }
 
 async function* mockAI(): AsyncIterable<string> {
